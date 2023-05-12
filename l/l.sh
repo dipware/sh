@@ -1,2 +1,2 @@
 #!/bin/sh
-ls -Al | l.awk
+ls -Al | $PREFIX/l.awk
