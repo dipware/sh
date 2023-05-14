@@ -1,4 +1,8 @@
 #!/bin/sh
-PREFIX=/home/mdip/dipware/scripts/sh/$1
+DIP_EXECUTABLE=$1
+shift
+ARGS=$@
+PREFIX=/home/mdip/dipware/scripts/sh/$DIP_EXECUTABLE
 export PREFIX
-$PREFIX/$1.sh
+export ARGS
+$PREFIX/$DIP_EXECUTABLE.sh
