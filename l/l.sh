@@ -5,10 +5,17 @@ LS_OUTPUT_LINES=$(ls -Al | grep -c '^')
 LINES=$(tput lines)
 ls -Al | awk '
 BEGIN {
-print "Permissions\tUser\tGroup\tFilename";
 }
-FNR>1 {
-print $1 "\t" $3 "\t" $4 "\t" $NF;
+FNR>1 && /^d/{
+directories[NR] = $1 "\t" $3 "\t" $4 "\t" $NF;
+}
+FNR>1 && !/^d/{
+files[NR] = $1 "\t" $3 "\t" $4 "\t" $NF;
+}
+END { 
+print "Permissions\tUser\tGroup\tName";
+for (dir in directories) print directories[dir];
+for (file in files) print files[file];
 }
 ' | if [ $LS_OUTPUT_LINES -gt $LINES ]
 then
