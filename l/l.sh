@@ -5,7 +5,7 @@ LS_OUTPUT_LINES=$(ls -Al | grep -c '^')
 LINES=$(tput lines)
 ls -Al | awk '
 BEGIN {
-print "Permissions\tUser\tGroup\tFileame";
+print "Permissions\tUser\tGroup\tFilename";
 }
 FNR>1 {
 print $1 "\t" $3 "\t" $4 "\t" $NF;
